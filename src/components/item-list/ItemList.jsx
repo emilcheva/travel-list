@@ -6,7 +6,13 @@ export default function ItemList({
   handleToggleItem,
 }) {
   return (
-    <ul>
+    <ul className="item-list">
+      {items.length === 0 && (
+        <div className="empty-state">
+          <p>Empty Packing List</p>
+        </div>
+      )}
+
       {items.map(({ name, id, packed }) => (
         <Item
           id={id}
