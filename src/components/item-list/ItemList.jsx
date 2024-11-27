@@ -1,6 +1,10 @@
 import Item from "./Item";
 
-export default function ItemList({ items, handleRemoveItem }) {
+export default function ItemList({
+  items,
+  handleRemoveItem,
+  handleToggleItem,
+}) {
   return (
     <ul>
       {items.map(({ name, id, packed }) => (
@@ -9,6 +13,7 @@ export default function ItemList({ items, handleRemoveItem }) {
           packed={packed}
           name={name}
           key={id}
+          onToggleItem={handleToggleItem}
           onRemoveItem={handleRemoveItem}
         />
       ))}
