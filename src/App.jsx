@@ -1,7 +1,7 @@
 import BackgroundHeading from "./components/BackgroundHeading";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
-import ItemList from "./components/ItemList";
+import ItemList from "./components/item-list/ItemList";
 import Sidebar from "./components/Sidebar";
 
 function App() {
