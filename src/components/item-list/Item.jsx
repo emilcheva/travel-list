@@ -1,4 +1,4 @@
-export default function Item({ name, packed }) {
+export default function Item({ name, packed, id, onRemoveItem }) {
   return (
     <li className="item">
       <label>
@@ -6,7 +6,7 @@ export default function Item({ name, packed }) {
         {name}
       </label>
 
-      <button>❌</button>
+      <button onClick={() => onRemoveItem(id)}>❌</button>
     </li>
   );
 }
