@@ -1,9 +1,9 @@
 import Counter from "./Counter";
 
-export default function Header({ total, packed }) {
+export default function Header() {
   return (
     <header>
-      <Counter total={total} packed={packed} />
+      <Counter />
     </header>
   );
 }

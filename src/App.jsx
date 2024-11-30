@@ -1,100 +1,21 @@
-import { useEffect, useState } from "react";
-
 import BackgroundHeading from "./components/BackgroundHeading";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import ItemList from "./components/item-list/ItemList";
 import Sidebar from "./components/Sidebar";
-
-const initialItems = [
-  {
-    id: 1,
-    name: "good mood",
-    packed: true,
-  },
-  {
-    id: 2,
-    name: "id card",
-    packed: false,
-  },
-  {
-    id: 3,
-    name: "phone",
-    packed: false,
-  },
-  {
-    id: 4,
-    name: "phone charger",
-    packed: false,
-  },
-];
+import ItemsContextProvider from "./context/ItemsContextProvider";
 
 function App() {
-  const [items, setItems] = useState(
-    () => JSON.parse(localStorage.getItem("items")) || initialItems
-  );
-
-  const handleAddItem = (item) => {
-    const newItems = [...items, item];
-    setItems(newItems);
-  };
-
-  const handleRemoveItem = (id) => {
-    const newItems = items.filter((item) => item.id !== id);
-    setItems(newItems);
-  };
-
-  const handleToggleItem = (id) => {
-    const newItems = items.map((item) => ({
-      ...item,
-      packed: id === item.id ? !item.packed : item.packed,
-    }));
-    setItems(newItems);
-  };
-
-  const handleMarkAllComplete = () => {
-    const completeItems = items.map((item) => ({ ...item, packed: true }));
-    setItems(completeItems);
-  };
-
-  const handleMarkAllIncomplete = () => {
-    const completeItems = items.map((item) => ({ ...item, packed: false }));
-    setItems(completeItems);
-  };
-
-  const handleResetInitial = () => {
-    setItems(initialItems);
-  };
-
-  const handleRemoveAllItems = () => {
-    setItems([]);
-  };
-
-  useEffect(() => {
-    localStorage.setItem("items", JSON.stringify(items));
-  }, [items]);
-
   return (
     <>
       <BackgroundHeading />
 
       <main>
-        <Header
-          total={items.length}
-          packed={items.filter((item) => item.packed).length}
-        />
-        <ItemList
-          items={items}
-          handleRemoveItem={handleRemoveItem}
-          handleToggleItem={handleToggleItem}
-        />
-        <Sidebar
-          handleAddItem={handleAddItem}
-          handleMarkAllComplete={handleMarkAllComplete}
-          handleMarkAllIncomplete={handleMarkAllIncomplete}
-          handleResetInitial={handleResetInitial}
-          handleRemoveAllItems={handleRemoveAllItems}
-        />
+        <ItemsContextProvider>
+          <Header />
+          <ItemList />
+          <Sidebar />
+        </ItemsContextProvider>
       </main>
 
       <Footer />
