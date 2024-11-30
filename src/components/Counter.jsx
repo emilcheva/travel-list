@@ -1,8 +1,7 @@
-import { useContext } from "react";
-import { ItemsContext } from "../context/ItemsContextProvider";
+import { useItemsContext } from "../lib/hooks";
 
 export default function Counter() {
-  const { items } = useContext(ItemsContext);
+  const { items } = useItemsContext();
   return (
     <p>
       <b>{items.filter((item) => item.packed).length}</b> / {items.length} items
