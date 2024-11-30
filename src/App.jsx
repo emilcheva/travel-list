@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import BackgroundHeading from "./components/BackgroundHeading";
 import Footer from "./components/Footer";
@@ -19,13 +19,20 @@ const initialItems = [
   },
   {
     id: 3,
-    name: "toothbrush",
+    name: "phone",
+    packed: false,
+  },
+  {
+    id: 4,
+    name: "phone charger",
     packed: false,
   },
 ];
 
 function App() {
-  const [items, setItems] = useState(initialItems);
+  const [items, setItems] = useState(
+    () => JSON.parse(localStorage.getItem("items")) || initialItems
+  );
 
   const handleAddItem = (item) => {
     const newItems = [...items, item];
@@ -62,6 +69,10 @@ function App() {
   const handleRemoveAllItems = () => {
     setItems([]);
   };
+
+  useEffect(() => {
+    localStorage.setItem("items", JSON.stringify(items));
+  }, [items]);
 
   return (
     <>
