@@ -14,8 +14,7 @@ export default function AddItemForm({ onAddItem }) {
       return;
     }
 
-    const newItem = { name: itemText, packed: false, id: new Date().getTime() };
-    onAddItem(newItem);
+    onAddItem(itemText);
     setItemText("");
   };
 
