@@ -40,7 +40,7 @@ body {
 }
 
 main {
-  width: 972px;
+  width: 90vw;
   height: 636px;
   background-color: #fff;
   border-radius: 8px;
@@ -70,9 +70,11 @@ header {
 }
 
 .item-list {
+  flex: 1;
   grid-column: 1 / 2;
   grid-row: 2 / 3;
   background-color: #fff;
+  height: 550px;
   overflow-y: scroll;
   scrollbar-width: thin;
   position: relative;
@@ -147,11 +149,6 @@ label > input:checked {
   background-color: #6e6251;
 }
 
-/* label > input:focus,
-label > input:active {
-  outline-color: #a1988a;
-} */
-
 label > label {
   cursor: pointer;
 }
@@ -184,9 +181,45 @@ h3 {
   margin-bottom: 5px;
 }
 
+.menu-button {
+  padding: 10px 15px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+.aside.open {
+  display: block;
+  right: 0;
+}
+
+.content-wrapper {
+  position: relative;
+  display: flex;
+  grid-column: 1 / 3;
+  grid-row: 2 / 2;
+}
+
+.aside {
+  display: none;
+  position: absolute;
+  top: 0;
+  right: -100%;
+  height: 100%;
+  width: 350px;
+  transition: right 0.3s ease-in-out;
+  z-index: 1000;
+  overflow-y: auto;
+}
+
+.item-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
 .sidebar {
-  grid-column: 2 / 3;
-  grid-row: 2 / 3;
+  height: 100%;
   background-color: #fffcf9;
   border-left: 1px solid rgba(0, 0, 0, 0.07);
   padding: 18px 25px 28px;
@@ -291,6 +324,12 @@ h1 {
 @media (max-height: 800px) {
   h1 {
     top: -3%;
+  }
+}
+
+@media (min-width: 990px) {
+  main {
+    width: 972px;
   }
 }
 
